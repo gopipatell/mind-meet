@@ -1,2 +1,9 @@
 <h1>Dashboad</h1>
 <p>Hi <%= @user.name %></p>
+
+<h3>Hosted meetings</h3>
+<ul>
+  <% @user.hostedMeetings.each do |meeting|  %>
+  <li><%= meeting.title %></li>
+  <% end %>
+</ul>

@@ -13,4 +13,7 @@
 class User < ApplicationRecord
   has_secure_password
   validates :email, :presence => true, :uniqueness => true
+
+  has_many :hostedMeetings, :class_name => :Meeting, :foreign_key => "host_id"
+
 end
