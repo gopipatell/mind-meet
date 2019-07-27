@@ -20,8 +20,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    puts "Current user #{session[:user_id]}"
-    @user = User.find session[:user_id]
+    @user = @current_user
   end
 
   private
