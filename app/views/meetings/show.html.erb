@@ -30,10 +30,12 @@
 <% end %>
 </ul>
 
-<%= form_for([@meeting, @meeting.actions.build], :as => :meeting_action) do |f| %>
-  <%= f.label :description  %>
-  <%= f.text_field :description %>
-  <%= f.label :duedate  %>
-  <%= f.date_field :duedate %>
-  <%= f.submit %>
+<% if @meeting.start.past? %>
+  <%= form_for([@meeting, @meeting.actions.build], :as => :meeting_action) do |f| %>
+    <%= f.label :description  %>
+    <%= f.text_field :description %>
+    <%= f.label :duedate  %>
+    <%= f.date_field :duedate %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
