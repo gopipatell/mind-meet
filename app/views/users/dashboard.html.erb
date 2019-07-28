@@ -4,6 +4,6 @@
 <h3>Hosted meetings</h3>
 <ul>
   <% @user.hostedMeetings.each do |meeting|  %>
-  <li><%= meeting.title %></li>
+  <li><%= link_to meeting.title, meeting_path(meeting) %></li>
   <% end %>
 </ul>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root :to => 'pages#home'
+  get '/error/unauthorised' => 'pages#error403'
 
   ## Signup
   resources :users, :only => [:new, :create]
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard'
 
   ## Meeting
-  resources :meetings, :only => [:new, :create, :edit, :delete]
+  resources :meetings, :only => [:new, :create, :edit, :show]
 
+  delete '/meetings/:id' => 'meetings#remove'
 end

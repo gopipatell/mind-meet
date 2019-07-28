@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    check_for_login
     @user = @current_user
   end
 

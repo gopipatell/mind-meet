@@ -16,17 +16,30 @@ class MeetingsController < ApplicationController
     else
       render :new
     end
+  end
 
+  def show
+    check_for_login
+    @meeting = Meeting.find params[:id]
+    check_for_authorisation @meeting
   end
 
   def edit
   end
 
-  def delete
+  def remove
   end
 
   private
   def meeting_params
     params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :duration)
   end
+
+  private
+  def check_for_authorisation(meeting)
+    # Show meeting only to host
+    redirect_to '/error/unauthorised' unless meeting.host == @current_user
+    # Show meeting only to the participants
+  end
+
 end
