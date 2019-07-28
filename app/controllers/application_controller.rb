@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def check_for_authorisation_participants(meeting)
     # Show meeting only to host and participants
-    redirect_to '/error/unauthorised' and return false unless meeting.host == @current_user ||
+    redirect_to error_unauthorised_path and return false unless meeting.host == @current_user ||
     meeting.users.include?(@current_user)
     return true
   end

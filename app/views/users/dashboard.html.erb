@@ -14,3 +14,9 @@
   <li><%= link_to meeting.title, meeting_path(meeting) %></li>
   <% end %>
 </ul>
+<h3>Actions</h3>
+<ul>
+  <% @user.actions.each do |action|  %>
+  <li><%= action.description %></li>
+  <% end %>
+</ul>

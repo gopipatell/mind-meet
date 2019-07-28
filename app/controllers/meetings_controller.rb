@@ -50,7 +50,7 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     check_for_login
     meeting = Meeting.find params[:id]
     if check_for_authorisation_host(meeting) &&
@@ -61,7 +61,7 @@ class MeetingsController < ApplicationController
 
   private
   def meeting_params
-    params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :duration,user_ids:[])
+    params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :start, :duration,user_ids:[])
   end
 
   def check_for_authorisation_host(meeting)
