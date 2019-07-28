@@ -18,4 +18,6 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :meetings
 
+  has_many :actions
+
 end

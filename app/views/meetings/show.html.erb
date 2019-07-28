@@ -1,5 +1,5 @@
 <h1><%= @meeting.title %></h1>
-<%= link_to "Edit", edit_meeting_path(@meeting)%> - 
+<%= link_to "Edit", edit_meeting_path(@meeting)%> -
 <%= link_to "Delete", meeting_path(@meeting), :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
 <p><%= @meeting.agenda1 %></p>
 <p><%= @meeting.agenda2 %></p>
@@ -13,3 +13,20 @@
   <li><%= user.name %></li>
 <% end %>
 </ul>
+
+
+<p>Actions</p>
+<ul>
+<% @meeting.actions.each do |action|  %>
+  <li><%= action.description %> - <%= action.duedate %> - <%= action.is_done %> - <%= action.user.name %></li>
+<% end %>
+</ul>
+
+<%= form_for([@meeting, @meeting.actions.build], :as => :meeting_action) do |f| %>
+  <%= f.label :description  %>
+  <%= f.text_field :description %>
+  <%= f.label :duedate  %>
+  <%= f.date_field :duedate %>
+
+  <%= f.submit %>
+<% end %>

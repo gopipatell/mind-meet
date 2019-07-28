@@ -30,9 +30,31 @@ m1 = Meeting.create :title => 'Monday meeting', :agenda1 => 'New Busuiness', :ag
 m2 = Meeting.create :title => 'Wednesday meeting', :agenda1 =>'openday planning'
 m3 = Meeting.create :title => 'Friday meeting', :agenda1 => 'graduation planning'
 
-# User and Meetings
+
+Action.destroy_all
+puts "Creating Actions"
+
+a1 = Action.create :description => 'My todo 1', :is_done => false
+a2 = Action.create :description => 'My todo 2', :is_done => false
+a3 = Action.create :description => 'My todo 3', :is_done => true
+a4 = Action.create :description => 'My todo 4', :is_done => true
+
+
+# Meeting assigned to User
 u1.hostedMeetings << m1 << m2 << m3
 u1.meetings << m1 << m2 << m3
 
-u2.meetings << m2
+u2.meetings << m1 << m2
 u3.meetings << m2
+
+
+# Actions assigned to User and Meeting
+m1.actions << a1
+m1.actions << a2
+m2.actions << a3
+m2.actions << a4
+
+u1.actions << a1
+u1.actions << a3
+u2.actions << a2
+u2.actions << a4
