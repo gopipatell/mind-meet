@@ -1,2 +1,22 @@
-<h1>Meetings#edit</h1>
-<p>Find me in app/views/meetings/edit.html.erb</p>
+<h1>Update Meeting</h1>
+<% if @meeting.errors.any? %>
+<ol>
+  <% @meeting.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ol>
+<% end %>
+
+<%= form_for @meeting do |f| %>
+<%= f.label :title  %>
+<%= f.text_field :title %>
+<%= f.label :agenda1  %>
+<%= f.text_field :agenda1 %>
+<%= f.label :agenda2  %>
+<%= f.text_field :agenda2 %>
+<%= f.label :agenda3  %>
+<%= f.text_field :agenda3 %>
+<%= f.label :duration  %>
+<%= f.number_field :duration %>
+<%= f.submit %>
+<% end %>

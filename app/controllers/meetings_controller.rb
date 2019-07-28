@@ -25,9 +25,25 @@ class MeetingsController < ApplicationController
   end
 
   def edit
+    check_for_login
+    @meeting = Meeting.find params[:id]
+    check_for_authorisation @meeting
   end
 
-  def remove
+  def update
+    check_for_login
+    meeting = Meeting.find params[:id]
+    check_for_authorisation meeting
+    meeting.update meeting_params
+    redirect_to meeting_path(meeting)
+  end
+
+  def delete
+    check_for_login
+    meeting = Meeting.find params[:id]
+    check_for_authorisation meeting
+    meeting.delete
+    redirect_to dashboard_path	
   end
 
   private

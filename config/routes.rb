@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard'
 
   ## Meeting
-  resources :meetings, :only => [:new, :create, :edit, :show]
+  resources :meetings, :only => [:new, :create, :edit,:update, :show]
 
-  delete '/meetings/:id' => 'meetings#remove'
+  delete '/meetings/:id' => 'meetings#delete'
 end
