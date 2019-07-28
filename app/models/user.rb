@@ -16,4 +16,6 @@ class User < ApplicationRecord
 
   has_many :hostedMeetings, :class_name => :Meeting, :foreign_key => "host_id"
 
+  has_and_belongs_to_many :meetings
+
 end

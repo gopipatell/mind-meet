@@ -7,3 +7,10 @@
   <li><%= link_to meeting.title, meeting_path(meeting) %></li>
   <% end %>
 </ul>
+
+<h3>All meetings</h3>
+<ul>
+  <% @user.meetings.each do |meeting|  %>
+  <li><%= link_to meeting.title, meeting_path(meeting) %></li>
+  <% end %>
+</ul>

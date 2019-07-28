@@ -21,13 +21,13 @@ class MeetingsController < ApplicationController
   def show
     check_for_login
     @meeting = Meeting.find params[:id]
-    check_for_authorisation @meeting
+    check_for_authorisation_participants @meeting
   end
 
   def edit
     check_for_login
     @meeting = Meeting.find params[:id]
-    check_for_authorisation @meeting
+    check_for_authorisation_host @meeting
   end
 
   def update
@@ -35,15 +35,16 @@ class MeetingsController < ApplicationController
     meeting = Meeting.find params[:id]
     check_for_authorisation meeting
     meeting.update meeting_params
-    redirect_to meeting_path(meeting)
+    redirect_to check_for_authorisation_host(meeting)
   end
 
   def delete
     check_for_login
     meeting = Meeting.find params[:id]
-    check_for_authorisation meeting
+    if check_for_authorisation_host(meeting) &&
     meeting.delete
-    redirect_to dashboard_path	
+      redirect_to dashboard_path
+    end
   end
 
   private
@@ -51,11 +52,17 @@ class MeetingsController < ApplicationController
     params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :duration)
   end
 
-  private
-  def check_for_authorisation(meeting)
-    # Show meeting only to host
-    redirect_to '/error/unauthorised' unless meeting.host == @current_user
-    # Show meeting only to the participants
+  def check_for_authorisation_host(meeting)
+    # Show meeting only to host and participants
+    redirect_to '/error/unauthorised' and return false unless meeting.host == @current_user
+    return true
+  end
+
+  def check_for_authorisation_participants(meeting)
+    # Show meeting only to host and participants
+    redirect_to '/error/unauthorised' and return false unless meeting.host == @current_user ||
+    meeting.users.include?(@current_user)
+    return true
   end
 
 end

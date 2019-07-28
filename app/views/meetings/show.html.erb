@@ -7,5 +7,9 @@
 
 <p>Host: <%= @meeting.host.name %></p>
 
-
-Condition: <%= @meeting.host.id == @current_user.id %>
+<p>Participants:</p>
+<ul>
+<% @meeting.users.each do |user|  %>
+  <li><%= user.name %></li>
+<% end %>
+</ul>

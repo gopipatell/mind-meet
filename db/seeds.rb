@@ -17,6 +17,10 @@
 User.destroy_all
 puts "Creating Users"
 u1 = User.create :name => 'Adam', :email => 'adam@gmail.com', :password => 'chicken'
+u2 = User.create :name => 'Gopi', :email => 'gopi@gmail.com', :password => 'chicken'
+u3 = User.create :name => 'John', :email => 'john@gmail.com', :password => 'chicken'
+u4 = User.create :name => 'Mary', :email => 'mary@gmail.com', :password => 'chicken'
+u5 = User.create :name => 'Paul', :email => 'paul@gmail.com', :password => 'chicken'
 
 
 Meeting.destroy_all
@@ -28,3 +32,7 @@ m3 = Meeting.create :title => 'Friday meeting', :agenda1 => 'graduation planning
 
 # User and Meetings
 u1.hostedMeetings << m1 << m2 << m3
+u1.meetings << m1 << m2 << m3
+
+u2.meetings << m2
+u3.meetings << m2
