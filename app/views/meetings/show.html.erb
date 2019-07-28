@@ -1,5 +1,5 @@
 <h1><%= @meeting.title %></h1>
-<%= link_to "Edit", edit_meeting_path(@meeting)%>
+<%= link_to "Edit", edit_meeting_path(@meeting)%> - 
 <%= link_to "Delete", meeting_path(@meeting), :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
 <p><%= @meeting.agenda1 %></p>
 <p><%= @meeting.agenda2 %></p>

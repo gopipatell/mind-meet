@@ -4,14 +4,18 @@ class MeetingsController < ApplicationController
   def new
     check_for_login
     @meeting = Meeting.new
+    @participants = User.all.select{ |u| @current_user != u }
   end
 
   def create
     check_for_login
     @meeting = Meeting.create meeting_params
+    @participants = User.all.select{ |u| @current_user != u }
+
     @meeting.host = @current_user
     if @meeting.save
       @current_user.hostedMeetings << @meeting
+      @current_user.meetings << @meeting
       redirect_to dashboard_path
     else
       render :new
@@ -27,15 +31,23 @@ class MeetingsController < ApplicationController
   def edit
     check_for_login
     @meeting = Meeting.find params[:id]
+    @participants = User.all.select{ |u| @current_user != u }
+
     check_for_authorisation_host @meeting
   end
 
   def update
     check_for_login
-    meeting = Meeting.find params[:id]
-    check_for_authorisation meeting
-    meeting.update meeting_params
-    redirect_to check_for_authorisation_host(meeting)
+    @meeting = Meeting.find params[:id]
+    @participants = User.all.select{ |u| @current_user != u }
+    check_for_authorisation_host @meeting
+
+    if @meeting.update meeting_params
+      @current_user.meetings << @meeting
+      redirect_to meeting_path(@meeting)
+    else
+      render :edit
+    end
   end
 
   def delete
@@ -49,7 +61,7 @@ class MeetingsController < ApplicationController
 
   private
   def meeting_params
-    params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :duration)
+    params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :duration,user_ids:[])
   end
 
   def check_for_authorisation_host(meeting)
