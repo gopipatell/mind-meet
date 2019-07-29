@@ -26,6 +26,18 @@ class ActionsController < ApplicationController
     end
   end
 
+  def complete
+    check_for_login
+    action = Action.find params[:id]
+    if action.user == @current_user || action.meeting.host == @current_user
+      action.is_done = !action.is_done
+      action.save
+      redirect_to request.referer
+    else
+        redirect_to error_unauthorised_path
+    end
+  end
+
   private
   def action_params
     #require[:action] is not working since Ruby params has action=create. Hence renaming the model with form_for(, :as => :meeting_action)

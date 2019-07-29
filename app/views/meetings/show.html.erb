@@ -26,11 +26,14 @@
 <% @meeting.actions.each do |action|  %>
   <li><%= action.description %> - <%= action.duedate %> - <%= action.is_done %> - <%= action.user.name %>
   <%= link_to 'delete', meeting_action_path(@meeting,action), :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
+   -
+  <%= link_to 'toggle', complete_action_path(action), :method => 'put' %>
+
   </li>
 <% end %>
 </ul>
 
-<% if @meeting.start.past? %>
+<% if true || @meeting.start.past? %>
   <%= form_for([@meeting, @meeting.actions.build], :as => :meeting_action) do |f| %>
     <%= f.label :description  %>
     <%= f.text_field :description %>

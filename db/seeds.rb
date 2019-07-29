@@ -26,9 +26,9 @@ u5 = User.create :name => 'Paul', :email => 'paul@gmail.com', :password => 'chic
 Meeting.destroy_all
 puts "Creating Meetings"
 
-m1 = Meeting.create :title => 'Monday meeting', :agenda1 => 'New Busuiness', :agenda2 => 'planning', :duration =>30
-m2 = Meeting.create :title => 'Wednesday meeting', :agenda1 =>'openday planning'
-m3 = Meeting.create :title => 'Friday meeting', :agenda1 => 'graduation planning'
+m1 = Meeting.create :title => 'Monday meeting', :agenda1 => 'New Busuiness', :agenda2 => 'planning', :duration =>30, :start => '2019-08-10'
+m2 = Meeting.create :title => 'Wednesday meeting', :agenda1 =>'openday planning', :duration => 30, :start => '2019-08-11'
+m3 = Meeting.create :title => 'Friday meeting', :agenda1 => 'graduation planning', :duration => 60, :start => '2019-07-31'
 
 
 Action.destroy_all

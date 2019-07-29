@@ -24,4 +24,7 @@ Rails.application.routes.draw do
     resources :actions, :only => [:create, :destroy]
   end
 
+  ## Action
+  put '/actions/:id/complete' => 'actions#complete', as: 'complete_action'
+
 end
