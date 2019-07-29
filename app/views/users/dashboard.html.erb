@@ -1,25 +1,87 @@
-<h1>Dashboad</h1>
-<p>Hi <%= @user.name %></p>
 
-<h3>Hosted meetings</h3>
-<ul>
-  <% @user.hostedMeetings.each do |meeting|  %>
-  <li><%= link_to meeting.title, meeting_path(meeting) %></li>
-  <% end %>
-</ul>
+<div class="container-fluid">
 
-<h3>All meetings</h3>
-<ul>
-  <% @user.meetings.each do |meeting|  %>
-  <li><%= link_to meeting.title, meeting_path(meeting) %></li>
-  <% end %>
-</ul>
-<h3>Actions</h3>
-<ul>
-  <% @user.actions.each do |action|  %>
-    <li><%= action.description %> -
-        <%= action.is_done %> -
-        <%= link_to 'toggle', complete_action_path(action), :method => 'put' %>
-    </li>
-  <% end %>
-</ul>
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-3 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Ry3j1IMhdhukL3SXCTW-q5MtEBDHu-oNlydFh-vMaY8h8LJYug" class="rounded-circle avatar-large">
+
+      <br>
+      <h5><%= @user.name %></h5>
+      <br>
+
+      <div class="progress" style="height: 8px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @actions_notdone_percent %>%;" aria-valuenow="<%= @actions_notdone_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <br><br>
+
+
+      <h6>Actions</h6>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Pending
+          <span class="badge badge-warning badge-pill"><%= @actions_notdone %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Completed
+          <span class="badge badge-success badge-pill"><%= @actions_done %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          All
+          <span class="badge badge-secondary badge-pill"><%= @user.actions.count %></span>
+        </li>
+      </ul>
+
+
+  <br><br>
+
+      <h6>Meetings</h6>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="#">This Week</a>
+          <span class="badge badge-primary badge-pill"><%= @meetings_this_week %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          This Month
+          <span class="badge badge-primary badge-pill"><%= @meetings_this_month %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Past
+          <span class="badge badge-primary badge-pill"><%= @meetings_past %></span>
+        </li>
+      </ul>
+
+    </div>
+
+    <!-- Main content -->
+    <div class="col-9">
+      <h3>Hosted meetings</h3>
+      <ul>
+        <% @user.hostedMeetings.each do |meeting|  %>
+          <li><%= link_to meeting.title, meeting_path(meeting) %></li>
+        <% end %>
+      </ul>
+
+      <h3>All meetings</h3>
+      <ul>
+        <% @user.meetings.each do |meeting|  %>
+          <li><%= link_to meeting.title, meeting_path(meeting) %></li>
+        <% end %>
+      </ul>
+      <h3>Actions</h3>
+      <ul>
+        <% @user.actions.each do |action|  %>
+          <li><%= action.description %>
+            -
+            <%= action.is_done %>
+            -
+            <%= link_to 'toggle', complete_action_path(action), :method => 'put' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

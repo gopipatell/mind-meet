@@ -22,6 +22,16 @@ class UsersController < ApplicationController
   def dashboard
     check_for_login
     @user = @current_user
+
+    @actions_done = @user.actions.select{ |u| u.is_done }.count
+    @actions_notdone = @user.actions.select{ |u| !u.is_done }.count
+    @actions_notdone_percent = @actions_done * 100 / @user.actions.count
+
+    @meetings_this_week = 'TODO'
+    @meetings_this_month = 'TODO'
+    @meetings_past = 'TODO'
+    # @user.meetings.select{ |m| Date.parse(m.start.to_s).cweek == DateTime.now.cweek }.count
+
   end
 
   private
