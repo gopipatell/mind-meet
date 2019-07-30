@@ -25,8 +25,11 @@ class UsersController < ApplicationController
 
     @actions_done = @user.actions.select{ |u| u.is_done }.count
     @actions_notdone = @user.actions.select{ |u| !u.is_done }.count
+    if @user.actions.count == 0
+      @actions_notdone_percent= 0
+    else
     @actions_notdone_percent = @actions_done * 100 / @user.actions.count
-
+  end
     @meetings_this_week = 'TODO'
     @meetings_this_month = 'TODO'
     @meetings_past = 'TODO'
