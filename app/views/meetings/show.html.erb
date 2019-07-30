@@ -1,4 +1,25 @@
-<h2><%= @meeting.title %></h2>
+<div class="row">
+  <div class="col-8">
+  <h2><%= @meeting.title %></h2>
+  </div>
+  <div class="col-4">
+    <div class="float-right">
+      <% @meeting.users.each do |user|  %>
+
+        <%
+          highlight = ""
+          if @meeting.host == user
+            highlight = "meeting-host"
+          end
+        %>
+
+        <img src="/assets/profile/<%= user.name %>.jpg" class="rounded-circle avatar-small <%= highlight %>" onerror="this.src = '/assets/profile/profile.jpg'" title="<%= user.name %>">
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <hr>
 
@@ -19,14 +40,6 @@
 
 <p>Meeting Duration: <%= @meeting.duration %> minutes</p>
 
-<p>Host: <%= @meeting.host.name %></p>
-
-<p>Participants:</p>
-<ul>
-<% @meeting.users.each do |user|  %>
-  <li><%= user.name %></li>
-<% end %>
-</ul>
 
 
 <h5>Actions</h5>
