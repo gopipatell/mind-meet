@@ -1,5 +1,3 @@
-require 'digest/md5'
-
 class ApplicationController < ActionController::Base
   before_action :fetch_user
 
@@ -39,8 +37,6 @@ class ApplicationController < ActionController::Base
     @meetings_this_week = @user.meetings.select{ |m| Date.parse(m.start.to_s).cweek == DateTime.now.cweek }.count
 
     @meetings_this_month =  @user.meetings.select{ |m| Date.parse(m.start.to_s).month == DateTime.now.month }.count
-
-    @user_profile_pic = Digest::MD5.hexdigest(@user.email)
 
   end
 
