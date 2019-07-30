@@ -26,6 +26,7 @@ class MeetingsController < ApplicationController
     check_for_login
     @meeting = Meeting.find params[:id]
     check_for_authorisation_participants @meeting
+    populate_dashboard
   end
 
   def edit

@@ -7,11 +7,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  </head>
+    </head>
 
   <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
       <a class="navbar-brand" href="#">
         Mind Meet
       </a>
@@ -52,9 +51,85 @@
         </ul>
       </div>
     </nav>
-    <br>
 
-    <%= yield %>
+    <% if @user.present? && @user.name.present? %>
+    <div class="container-fluid">
+
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-3 text-center">
+            <div class="fill p-3 mt-3 shadow-lg bg-white rounded">
+
+
+          <img src="/assets/profile/<%= @user.name %>.jpg" class="rounded-circle avatar-large">
+
+
+          <br>
+          <h5><%= @user.name %></h5>
+          <br>
+
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar" role="progressbar" style="width: <%= @actions_notdone_percent %>%;" aria-valuenow="<%= @actions_notdone_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <br><br>
+
+
+          <h6>Actions</h6>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Pending
+
+              <span class="badge badge-warning badge-pill"><%= @actions_notdone %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Completed
+              <span class="badge badge-success badge-pill"><%= @actions_done %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              All
+              <span class="badge badge-secondary badge-pill"><%= @user.actions.count %></span>
+            </li>
+          </ul>
+
+
+      <br><br>
+
+          <h6>Meetings</h6>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="#">This Week</a>
+              <span class="badge badge-primary badge-pill"><%= @meetings_this_week %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              This Month
+              <span class="badge badge-primary badge-pill"><%= @meetings_this_month %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Past
+            </li>
+          </ul>
+</div>
+        </div>
+
+        <!-- Main content -->
+        <div class="col-9">
+          <div class="fill p-3 pl-4 mt-3 shadow-lg bg-white rounded">
+            <%= yield %>
+          </div>
+        </div>
+    </div>
+    <% else  %>
+      <%= yield %>
+    <% end %>
+
+
+<footer>
+  copy right
+</footer>
+
 
   </body>
 </html>

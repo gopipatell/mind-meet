@@ -1,23 +1,36 @@
-<h1>Signup</h1>
+<h2 class="text-center">Signup</h2>
+
 <% if @user.errors.any? %>
-<ol>
-  <% @user.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-  <% end %>
-</ol>
+  <ol>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ol>
 <% end %>
+
 <%= form_for @user do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<br>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<br>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<br>
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %>
-<br>
-<%= f.submit "Sign up!" %>
+<div class="container">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class=> "form-control"%>
+    </div>
+    <div class="form-group">
+
+      <%= f.label :email %>
+      <%= f.email_field :email, :class=> "form-control"%>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, :class=> "form-control"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, :class=> "form-control"%>
+    </div>
+    <%= f.submit "Sign up!", :class=>"btn btn-info"%>
+  </div>
+</div>
+
 <% end %>
