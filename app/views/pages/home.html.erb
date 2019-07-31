@@ -1,42 +1,40 @@
-<h2 class="text-center">Mind Meet</h2>
-<p>Making Meeting Meanungful(MM -MMM)</p>
-  <blockquote class="blockquote-reverse">
-    <p>People have meetings. Make sure their time isn't wasted, and that everyone knows what was said, who decided what, and what needs to be done next.  Make meetings worth everyone's time.</p>
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class=""></li>
         <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777">
+            <img src="assets/Home/Meeting-home.jpg" class="home-carousel-image" alt="">
+          </rect></svg>
           <div class="container">
             <div class="carousel-caption text-left">
-              <h1>Example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              <h1>Make Meeting Meaningful.</h1>
+              <p>People have meetings. Make sure their time isn't wasted, and that everyone knows what was said, who decided what, and what needs to be done next.  Make meetings worth everyone's time.</p>
+              <p><li class="btn btn-lg btn-info">
+                <%= link_to "SignUp!", new_user_path%>
+              </li></p>
             </div>
           </div>
         </div>
         <div class="carousel-item active">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777">
+            <img src="assets/Home/Meetinghome.jpg" class= "home-carousel-image" alt="">
+          </rect></svg>
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"></rect></svg>
-          <div class="container">
-            <div class="carousel-caption text-right">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              <h1>What do you do to ensure productivity at your meetings?</h1>
+              <ul>
+                <p>Provide the agenda ahead of time with relevant topics.</p>
+                <p>Make the goals of your meeting clear.</p>
+                <p>Establish an engaging facilitator.</p>
+              </ul>
+              <li class="btn btn-lg btn-info">
+                <%= link_to "SignUp!", new_user_path%>
+              </li>
             </div>
           </div>
         </div>
@@ -50,3 +48,48 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <h2 class="text-center">Features</h2>
+
+    <hr class="featurette-divider">
+
+
+
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h5 class="featurette-heading">Easy Polling</h5>
+        <p class="lead">Schedule a meeting in two easy steps
+With MindMeet, you can organize a meeting date and time without the hassle of lengthy email chains,or endless phone tag. Scheduling a group meeting just got a whole lot easier! To organize a meeting (1) simply enter your meeting details, (2) select attendees and time slots.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="assets/Home/easypolling.jpg" alt=""><rect width="100%" height="100%" fill="#eee"/>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h3 class="featurette-heading">Dashboard</h3>
+        <p class="lead">Manage all of your meetings in a single dashboard! Instead of viewing your meetings separately through unique links, MindMeet brings every meeting associated with your username into one convenient location. The “Dashboard” button at the top of the website.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="assets/Home/dashboard.jpg" alt="">
+        <rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h3 class="featurette-heading">Ads Free</h3>
+        <p class="lead">Who wants to be bothered with ads when trying to schedule a meeting? MindMeet does not offer advertising placements to any ad display networks on web. All you see is what is important to successful planning–your contacts and meetings!</p>
+      </div>
+      <div class="col-md-5">
+        <img src="assets/Home/adfree.jpg" alt="">
+        <rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">

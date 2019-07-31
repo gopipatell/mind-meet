@@ -37,3 +37,10 @@ a {
 a:hover{
   color: #60d4ea;
 }
+.home-carousel-image {
+  object-fit: cover;
+  filter: blur(2px);
+
+  opacity: 0.5;
+  transition: opacity 1s, background 1s;
+}

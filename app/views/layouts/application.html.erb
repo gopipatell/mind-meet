@@ -4,6 +4,7 @@
     <title>MindMeet</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= cloudinary_js_config %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -122,10 +123,6 @@
       <% else  %>
         <%= yield %>
       <% end %>
-
-      <footer>
-        copy right
-      </footer>
-
+      <br>
     </body>
   </html>
