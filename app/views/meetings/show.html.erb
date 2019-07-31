@@ -23,12 +23,28 @@
 
 <hr>
 
-<p class="text-muted"><%= @meeting.start.strftime('%A, %d %b %Y %l:%M %p %z')  %></p>
+
+<div class="row">
+  <div class="col-6">
+    <p class="text-muted font-weight-light"><%= @meeting.start.strftime('%A, %d %b %Y %l:%M %p %z')  %>
+      <span class="ml-2 d-inline-block align-middle badge badge-secondary"><%= @meeting.duration %> minutes</span>
+    </p>
+
+  </div>
+  <div class="col-6">
+    <div class="float-right">
+      <%= link_to "Update", edit_meeting_path(@meeting), :class => 'btn btn-outline-info btn-sm' %>
+      <%= link_to "Delete", meeting_path(@meeting), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-outline-secondary btn-sm' %>
+    </div>
+  </div>
+</div>
 
 
-<div class="float-right">
-  <%= link_to "Edit", edit_meeting_path(@meeting), :class => 'btn btn-outline-info btn-sm' %>
-  <%= link_to "Delete", meeting_path(@meeting), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-outline-secondary btn-sm' %>
+
+
+
+<div class="alert">
+  <p><%= simple_format @meeting.description %></p>
 </div>
 
 <h5>Agenda</h5>
@@ -38,28 +54,87 @@
   <li><%= @meeting.agenda3 %></li>
 </ol>
 
-<p>Meeting Duration: <%= @meeting.duration %> minutes</p>
 
 
 
 <h5>Actions</h5>
-<ul>
-<% @meeting.actions.each do |action|  %>
-  <li><%= action.description %> - <%= action.duedate %> - <%= action.is_done %> - <%= action.user.name %>
-  <%= link_to 'delete', meeting_action_path(@meeting,action), :method => 'delete', :data => {:confirm => 'Are you sure?'} %>
-   -
-  <%= link_to 'toggle', complete_action_path(action), :method => 'put' %>
 
-  </li>
+
+<% (@meeting.actions.sort_by &:created_at).each do |action|  %>
+<hr>
+
+<div class="row ml-2">
+<div class="col-1 align-middle d-table-cell">
+  <br>
+
+<% if action.is_done %>
+  <i class="fa fa-check-circle text-info" style="font-size:30px"></i>
+<% else  %>
+  <i class="fa fa-spinner text-secondary" style="font-size:30px"></i>
+<% end  %>
+
+</div>
+  <div class="col-7">
+
+    <p>
+      <%= simple_format action.description %> </p>
+
+    <div class="float-left">
+
+      <%
+        mark_as_text = "mark as completed"
+        if action.is_done
+          mark_as_text = "mark as pending"
+        end
+      %>
+
+      <%= link_to mark_as_text, complete_action_path(action), :method => 'put', :class => 'btn btn-sm btn-outline-primary' %>
+      <%= link_to 'delete', meeting_action_path(@meeting,action), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+  <div class="col-3">
+    <img src="/assets/profile/<%= action.user.name %>.jpg" class="float-left mr-2 rounded-circle avatar-small" onerror="this.src = '/assets/profile/profile.jpg'" title="<%= action.user.name %>">
+    <p class="text-muted text-weight-light"><%= action.user.name %>
+      <br>
+      <span style="font-size:80%"><%= action.duedate.strftime('%d %b %Y') %></span>
+    </p>
+
+  </div>
+
+</div>
+
 <% end %>
-</ul>
 
-<% if true || @meeting.start.past? %>
-  <%= form_for([@meeting, @meeting.actions.build], :as => :meeting_action) do |f| %>
-    <%= f.label :description  %>
-    <%= f.text_field :description %>
-    <%= f.label :duedate  %>
-    <%= f.date_field :duedate %>
-    <%= f.submit %>
-  <% end %>
+<hr>
+
+<%= form_for([@meeting, @meeting.actions.build], :as => :meeting_action) do |f| %>
+
+<div class="row">
+  <div class="col-1">
+  </div>
+  <div class="col-7 form-group">
+
+  <form>
+    <div class="form-group">
+      <%= f.text_area :description, :class => "form-control", :placeholder => "Action..." %>
+
+    </div>
+    <div class="form-group">
+      <%= f.date_field :duedate, :class => "form-control", :placeholder => 'Due date' %>
+
+    </div>
+    <div class="form-group">
+      <%= f.submit "Create Action", :class => "btn btn-info btn-sm" %>
+    </div>
+  </form>
+
+  </div>
+
+
+  <div class="col-3">
+    <img src="/assets/profile/<%= @user.name %>.jpg" class="float-left mr-2 rounded-circle avatar-small" onerror="this.src = '/assets/profile/profile.jpg'" title="<%= @user.name %>">
+    <p class="text-muted text-weight-light"><%= @user.name %>
+    </p>
+  </div>
+</div>
 <% end %>

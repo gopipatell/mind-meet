@@ -1,24 +1,27 @@
-<h2 class="text-center">Login</h2>
 <p>
   <%= flash[:error_message] %>
 </p>
 <%= form_tag login_path do %>
-<div class="container">
-<div class="shadow-lg p-3 mb-5 bg-white rounded">
+<div class="row">
+  <div class="container col-lg-6 col-md-8 col-sm-10">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded mt-5">
+    <h3 class="text-center">Login</h3>
 
-<div class="form-group">
-<%= label_tag :email %>
+  <div class="form-group">
+  <%= label_tag :email %>
 
-<%= email_field_tag :email, nil, :class => "form-control"%>
+  <%= email_field_tag :email, nil, :class => "form-control"%>
 
-</div>
+  </div>
 
-<div class="form-group">
-<%= label_tag :password %>
-<br>
-<%= password_field_tag :password, nil, :class => "form-control"%>
-</div>
-<%= submit_tag "Sign In", :class=>"btn btn-info"%>
-<% end %>
-</div>
+  <div class="form-group">
+  <%= label_tag :password %>
+  <br>
+  <%= password_field_tag :password, nil, :class => "form-control"%>
+  </div>
+  <%= submit_tag "Sign In", :class=>"btn btn-info"%>
+  <% end %>
+  </div>
+  </div>
+
 </div>

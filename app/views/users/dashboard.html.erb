@@ -5,13 +5,52 @@
   <% end %>
 </ul>
 
-<h3>All meetings</h3>
+<h4>All meetings</h4>
 <ul>
   <% @user.meetings.each do |meeting|  %>
     <li><%= link_to meeting.title, meeting_path(meeting) %></li>
   <% end %>
 </ul>
-<h3>Actions</h3>
+
+
+<h4>Actions</h4>
+
+<% (@user.actions.sort_by &:created_at).each do |action|  %>
+
+<div class="row ml-2">
+  <div class="col-1">
+    <br><br>
+
+  <% if action.is_done %>
+    <i class="fa fa-check-circle text-info" style="font-size:30px"></i>
+  <% else  %>
+    <i class="fa fa-spinner text-secondary" style="font-size:30px"></i>
+  <% end  %>
+  </div>
+  <div class="col-9">
+    <hr>
+    <p><%= simple_format action.description %></p>
+    <p class="badge badge-secondary"><%= action.duedate  %></p>
+
+    <div class="float-right">
+      <%
+        mark_as_text = "mark as completed"
+        if action.is_done
+          mark_as_text = "mark as pending"
+        end
+      %>
+
+      <%= link_to mark_as_text, complete_action_path(action), :method => 'put', :class => 'btn btn-sm btn-outline-primary' %>
+      <%= link_to 'delete', meeting_action_path(action.meeting,action), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+  <div class="col-2">
+
+  </div>
+</div>
+
+<% end %>
+
 <ul>
   <% @user.actions.each do |action|  %>
     <li><%= action.description %>

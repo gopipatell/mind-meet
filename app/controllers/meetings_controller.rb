@@ -35,6 +35,7 @@ class MeetingsController < ApplicationController
     @participants = User.all.select{ |u| @current_user != u }
 
     check_for_authorisation_host @meeting
+    
   end
 
   def update
@@ -62,7 +63,7 @@ class MeetingsController < ApplicationController
 
   private
   def meeting_params
-    params.require(:meeting).permit(:title, :agenda1,:agenda2, :agenda3, :start, :duration,user_ids:[])
+    params.require(:meeting).permit(:title, :description, :agenda1,:agenda2, :agenda3, :start, :duration,user_ids:[])
   end
 
   def check_for_authorisation_host(meeting)

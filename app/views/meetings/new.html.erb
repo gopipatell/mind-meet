@@ -1,7 +1,7 @@
-<h2 class="text-center">Add Meeting</h2>
-
 <%= form_for @meeting do |f| %>
-<div class="container">
+<div class="row">
+
+<div class="container col-lg-6 col-md-8 col-sm-10">
 
   <% if @meeting.errors.any? %>
     <div class="alert alert-warning" role="alert">
@@ -12,11 +12,16 @@
       </ul>
     </div>
   <% end %>
+  <div class="shadow-lg p-3 mb-5 bg-white rounded mt-5">
+    <h3 class="text-center">Start a new meeting</h3>
 
-  <div class="shadow-lg p-3 mb-5 bg-white rounded">
     <div class="form-group">
       <%= f.label :"Meeting Title" %>
       <%= f.text_field :title, :class=> "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"description" %>
+      <%= f.text_area :description, :class=> "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :"First Agenda" %>
@@ -50,5 +55,6 @@
 
     <%= f.submit "Add Meeting", :class=>"btn btn-info"%>
   </div>
+</div>
 
 <% end %>

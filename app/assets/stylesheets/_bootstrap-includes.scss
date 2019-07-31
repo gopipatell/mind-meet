@@ -1,6 +1,5 @@
 @import "bootstrap";
 
-
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
@@ -43,4 +42,8 @@ a:hover{
 
   opacity: 0.5;
   transition: opacity 1s, background 1s;
+}
+
+.navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-text {
+    color: rgba(255, 255, 255, 0.9);
 }
