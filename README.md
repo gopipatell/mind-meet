@@ -1,24 +1,44 @@
-# README
+# Mind Meet
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Make meetings meaningful - https://mind-meet.herokuapp.com
 
-Things you may want to cover:
+## Tools & Technologies
+* Ruby on Rails
+* Bootstrap
+* Cloudinary
+* Fontawesome
+* Hereku
+* CSS
+* HTML
 
-* Ruby version
+## Features
 
-* System dependencies
+* User registration and login
+* Scheduling a meeting
+* Taking actions for each user
+* Showing action progress
+* Marking action as done
+* Showing meeting info
+* Updating meeting detalis
+* Add participants in meeting
 
-* Configuration
+## Database design
 
-* Database creation
+![ER Diagram](docs/entity-relationship-diagram.png)
 
-* Database initialization
+## Screen designs
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## Bugs
 
-* Deployment instructions
+Please [report an issue](https://github.com/gopipatell/mind-meet/issues/new) in Github.  
 
-* ...
+## To Do list
+
+* Taking Notes in meeting
+* Sharing meeting in Google calender
+
+
+## Thank you
+
+[Rashida](https://github.com/rashidabengali)for helping me 😊	
