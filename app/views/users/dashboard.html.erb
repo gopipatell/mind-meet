@@ -50,14 +50,3 @@
 </div>
 
 <% end %>
-
-<ul>
-  <% @user.actions.each do |action|  %>
-    <li><%= action.description %>
-      -
-      <%= action.is_done %>
-      -
-      <%= link_to 'toggle', complete_action_path(action), :method => 'put' %>
-    </li>
-  <% end %>
-</ul>
