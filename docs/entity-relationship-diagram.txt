@@ -1,0 +1,37 @@
+// https://dbdiagram.io/d
+
+Table meetings {
+  id int [pk]
+  title text
+  description text
+  agenda1 text
+  agenda2 text
+  agenda3 text
+  start date
+  duration int 
+  host int
+}
+
+Table meetings_users {
+  id int [pk]
+  meeting_id int [ref: > meetings.id]
+  user_id int [ref: > users.id]
+}
+Table users {
+  id int [pk]
+  name text
+  email text
+  password_digest text
+}
+
+
+Table actions {
+  id int [pk]
+  description text
+  duedate datetime
+  is_done boolean
+  meeting_id int [ref: > meetings.id]
+  user_id int [ref: > users.id]
+  image text
+}
+
