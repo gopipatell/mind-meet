@@ -1,20 +1,50 @@
-<h3>Hosted meetings</h3>
-<ul>
-  <% @user.hostedMeetings.each do |meeting|  %>
-    <li><%= link_to meeting.title, meeting_path(meeting) %></li>
-  <% end %>
-</ul>
 
-<h4>All meetings</h4>
-<ul>
-  <% @user.meetings.each do |meeting|  %>
-    <li><%= link_to meeting.title, meeting_path(meeting) %></li>
-  <% end %>
-</ul>
+<h5>Meetings</h5>
+<% if !@user.meetings.present? %>
+  <p class="ml-5">Hurray! You do not have any meetings yet.</p>
+<% end  %>
+
+<% @user.meetings.each do |meeting|  %>
+  <hr>
+  <div class="row ml-2">
+    <div class="col-1">
+      <div class="alert-secondary text-center rounded-lg p-2 small">
+        <%= meeting.start.strftime('%d %b') %>
+      </div>
+
+    </div>
+    <div class="col-7">
+      <p>
+        <%= link_to meeting.title, meeting_path(meeting), :class => 'text-capitalize' %>
+      </p>
+      <p class="small text-muted">
+        <%= meeting.description %>
+      </p>
+
+    </div>
+    <div class="col-4 text-center small">
+
+      <i class="fa fa-users mr-1 text-secondary"></i>
+      <%= pluralize(meeting.users.count, 'participant') %>
+      &#xb7;
+      <i class="fa fa-bolt mr-1 text-secondary"></i>
+      <%= pluralize(meeting.actions.count, 'action') %>
+
+      <p>Host: <%= meeting.host.name %></p>
+
+    </div>
+  </div>
 
 
-<h4>Actions</h4>
+<% end %>
 
+<br><br>
+
+<h5>Actions</h5>
+
+<% if !@user.actions.present? %>
+  <p class="ml-5">Hurray! You do not have any actions yet.</p>
+<% end  %>
 <% (@user.actions.sort_by &:created_at).each do |action|  %>
 
 <div class="row ml-2">
@@ -30,7 +60,7 @@
   <div class="col-9">
     <hr>
     <p><%= simple_format action.description %></p>
-    <p class="badge badge-secondary"><%= action.duedate  %></p>
+    <p class="badge badge-secondary"><%= action.duedate.strftime('%a, %d %b %Y')  %></p>
 
     <div class="float-right">
       <%

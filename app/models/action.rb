@@ -13,6 +13,7 @@
 #
 
 class Action < ApplicationRecord
+  validates :description, :duedate, :presence => true
 
   belongs_to :user
   belongs_to :meeting

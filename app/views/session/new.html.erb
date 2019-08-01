@@ -10,7 +10,7 @@
   <div class="form-group">
   <%= label_tag :email %>
 
-  <%= email_field_tag :email, nil, :class => "form-control"%>
+  <%= email_field_tag :email, nil, :class => "form-control", :placeholder =>"email"%>
 
   </div>
 
@@ -19,7 +19,7 @@
   <br>
   <%= password_field_tag :password, nil, :class => "form-control"%>
   </div>
-  <%= submit_tag "Sign In", :class=>"btn btn-info"%>
+  <%= submit_tag "Login", :class=>"btn btn-info"%>
   <% end %>
   </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-8">
-  <h2><%= @meeting.title %></h2>
+  <h2 class="text-capitalize"><%= @meeting.title %></h2>
   </div>
   <div class="col-4">
     <div class="float-right">
@@ -12,8 +12,8 @@
             highlight = "meeting-host"
           end
         %>
-
-        <img src="/assets/profile/<%= user.name %>.jpg" class="rounded-circle avatar-small <%= highlight %>" onerror="this.src = '/assets/profile/profile.jpg'" title="<%= user.name %>">
+        <%= cl_image_tag(user.image, :class => "rounded-circle #{highlight}", :width => 35, :height => 35,
+     :crop => :thumb, :gravity => :face) %>
 
       <% end %>
     </div>
@@ -26,7 +26,7 @@
 
 <div class="row">
   <div class="col-6">
-    <p class="text-muted font-weight-light"><%= @meeting.start.strftime('%A, %d %b %Y %l:%M %p %z')  %>
+    <p class="text-muted font-weight-light"><%= @meeting.start.strftime('%A, %d %b %Y %l:%M %p')  %>
       <span class="ml-2 d-inline-block align-middle badge badge-secondary"><%= @meeting.duration %> minutes</span>
     </p>
 
@@ -60,7 +60,7 @@
 <h5>Actions</h5>
 
 
-<% (@meeting.actions.sort_by &:created_at).each do |action|  %>
+<% (@meeting.actions.sort_by &:duedate).each do |action|  %>
 <hr>
 
 <div class="row ml-2">
@@ -92,12 +92,20 @@
       <%= link_to 'delete', meeting_action_path(@meeting,action), :method => 'delete', :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-sm btn-outline-secondary' %>
     </div>
   </div>
-  <div class="col-3">
-    <img src="/assets/profile/<%= action.user.name %>.jpg" class="float-left mr-2 rounded-circle avatar-small" onerror="this.src = '/assets/profile/profile.jpg'" title="<%= action.user.name %>">
-    <p class="text-muted text-weight-light"><%= action.user.name %>
-      <br>
-      <span style="font-size:80%"><%= action.duedate.strftime('%d %b %Y') %></span>
-    </p>
+  <div class="col-4">
+
+    <div class="row">
+      <div class="col-2">
+          <%= cl_image_tag(action.user.image, :class => "rounded-circle", :width => 50, :height => 50,
+       :crop => :thumb, :gravity => :face) %>
+      </div>
+      <div class="col pl-4">
+        <p class="text-muted text-weight-light"><%= action.user.name %>
+          <br>
+          <span style="font-size:80%"><%= action.duedate.strftime('%d %b %Y') %></span>
+        </p>
+      </div>
+    </div>
 
   </div>
 
@@ -131,10 +139,20 @@
   </div>
 
 
-  <div class="col-3">
-    <img src="/assets/profile/<%= @user.name %>.jpg" class="float-left mr-2 rounded-circle avatar-small" onerror="this.src = '/assets/profile/profile.jpg'" title="<%= @user.name %>">
-    <p class="text-muted text-weight-light"><%= @user.name %>
-    </p>
+  <div class="col-4">
+
+    <div class="row">
+      <div class="col-2">
+          <%= cl_image_tag(@user.image, :class => "rounded-circle", :width => 50, :height => 50,
+       :crop => :thumb, :gravity => :face) %>
+
+      </div>
+      <div class="col pl-4">
+        <p class="text-muted text-weight-light"><%= @user.name %>
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
 <% end %>

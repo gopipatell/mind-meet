@@ -35,7 +35,7 @@ class MeetingsController < ApplicationController
     @participants = User.all.select{ |u| @current_user != u }
 
     check_for_authorisation_host @meeting
-    
+
   end
 
   def update

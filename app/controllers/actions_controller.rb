@@ -20,7 +20,7 @@ class ActionsController < ApplicationController
 
     if @current_user == action.user || @current_user == meeting.host
       action.delete
-      redirect_to meeting_path(meeting)
+      redirect_to request.referer
     else
       redirect_to error_unauthorised_path
     end

@@ -6,7 +6,7 @@
   </ol>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:multipart => true} do |f| %>
 <div class="row">
   <div class="container col-lg-6 col-md-8 col-sm-10">
     <div class="shadow-lg p-3 mb-5 bg-white rounded mt-5">
@@ -19,7 +19,7 @@
       <div class="form-group">
 
         <%= f.label :email %>
-        <%= f.email_field :email, :class=> "form-control"%>
+        <%= f.email_field :email, :class=> "form-control", :placeholder => 'Email'%>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <div class="form-group">
@@ -30,7 +30,11 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, :class=> "form-control"%>
       </div>
-      <%= f.submit "Sign up!", :class=>"btn btn-info"%>
+      <div class="form-group">
+        <%= f.label :image%>
+        <%= f.cl_image_upload :image, :class=> "form-control"%>
+      </div>
+      <%= f.submit "Sign Up", :class=>"btn btn-info"%>
     </div>
   </div>
 
