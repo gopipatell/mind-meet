@@ -27,7 +27,7 @@ Make meetings meaningful - https://mind-meet.herokuapp.com
 ![ER Diagram](docs/entity-relationship-diagram.png)
 
 ## Screen designs
-
+![Home page](docs/screenshot/mind-meet-home-page.png)
 
 ## Bugs
 
@@ -41,4 +41,4 @@ Please [report an issue](https://github.com/gopipatell/mind-meet/issues/new) in 
 
 ## Thank you
 
-[Rashida](https://github.com/rashidabengali)for helping me 😊	
+[Rashida](https://github.com/rashidabengali)for helping me 😊
